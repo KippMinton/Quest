@@ -42,8 +42,9 @@ namespace Quest
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
 
+            Console.WriteLine("What is your name, adventurer?");
             // Make a new "Adventurer" object using the "Adventurer" class
-            Adventurer theAdventurer = new Adventurer("Jack");
+            Adventurer theAdventurer = new Adventurer(Console.ReadLine());
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -56,26 +57,60 @@ namespace Quest
                 favoriteBeatle
             };
 
-            // Loop through all the challenges and subject the Adventurer to them
-            foreach (Challenge challenge in challenges)
-            {
-                challenge.RunChallenge(theAdventurer);
-            }
+            adventure();
 
-            // This code examines how Awesome the Adventurer is after completing the challenges
-            // And praises or humiliates them accordingly
-            if (theAdventurer.Awesomeness >= maxAwesomeness)
-            {
-                Console.WriteLine("YOU DID IT! You are truly awesome!");
-            }
-            else if (theAdventurer.Awesomeness <= minAwesomeness)
-            {
-                Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
-            }
-            else
-            {
-                Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
-            }
+            void adventure() {
+                // Loop through all the challenges and subject the Adventurer to them
+                foreach (Challenge challenge in challenges)
+                {
+                    challenge.RunChallenge(theAdventurer);
+                }
+
+                // This code examines how Awesome the Adventurer is after completing the challenges
+                // And praises or humiliates them accordingly
+                if (theAdventurer.Awesomeness >= maxAwesomeness)
+                {
+                    Console.WriteLine("YOU DID IT! You are truly awesome!");
+                }
+                else if (theAdventurer.Awesomeness <= minAwesomeness)
+                {
+                    Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
+                }
+                else
+                {
+                    Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
+                }
+
+                Console.WriteLine("Would you like to attempt this quest once more?");
+
+                string replay = Console.ReadLine().ToLower();
+
+                if(replay == "yes" || replay == "y") 
+                {
+                    adventure();
+                }
+                else if (replay == "no" || replay == "n")
+                {
+                    Console.WriteLine("Your appetite for adventure is puny.");
+                }
+                else
+                {
+                    Console.WriteLine("This is a yes or no question. Quest again?");
+                    replay = Console.ReadLine().ToLower();
+                    if(replay == "yes" || replay == "y") 
+                    {
+                        adventure();
+                    }
+                    else if (replay == "no" || replay == "n")
+                    {
+                        Console.WriteLine("Your appetite for adventure is puny.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ok, we're done here...");
+                    }
+                }
+            }    
         }
     }
 }
