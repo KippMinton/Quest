@@ -9,6 +9,20 @@ namespace Quest
     {
         static void Main(string[] args)
         {
+
+            Challenge cupsOfSugar = new Challenge("How many cups of sugar does it take to get to the moon?", 3947, 50);
+            Challenge favoriteColor = new Challenge(@"What is your quest?
+    1) To seek the Holy Grail
+    2) To aimlessly wander the space-time continuum
+    3) To win
+", 
+            1, 25);
+
+            Challenge swallowVelocity = new Challenge(@"What is the airspeed velocity of an unladen swallow?
+    1) 24 miles per hour
+    2) African or European?
+", 
+            2, 25);
             // Create a few challenges for our Adventurer's quest
             // The "Challenge" Constructor takes three arguments
             //   the text of the challenge
@@ -67,14 +81,30 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                cupsOfSugar,
+                favoriteColor,
+                swallowVelocity
             };
 
             adventure();
 
             void adventure() {
+                //reset adventurer awesomeness level each time the quest is played
+                theAdventurer.Awesomeness = 50;
+                //create a new list of random challenges each time the quest is played
+                List<Challenge> questChallenges = new List<Challenge>(){};
+                while (questChallenges.Count < 5)
+                {
+                    int index = new Random().Next(0, challenges.Count-1);
+                    if (!questChallenges.Contains(challenges[index]))
+                    {
+                        questChallenges.Add(challenges[index]);
+                    }
+                }
+
                 // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                foreach (Challenge challenge in questChallenges)
                 {
                     challenge.RunChallenge(theAdventurer);
                 }
