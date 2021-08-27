@@ -91,7 +91,11 @@ namespace Quest
 
             void adventure() {
                 //reset adventurer awesomeness level each time the quest is played
-                theAdventurer.Awesomeness = 50;
+                theAdventurer.Awesomeness = 50 + (theAdventurer.Xp * 10);
+                if(theAdventurer.Xp > 0)
+                {
+                    Console.WriteLine($"{theAdventurer.Name} has gained {theAdventurer.Xp} XP, and their current awesomeness level is {theAdventurer.Awesomeness}.");
+                }
                 //create a new list of random challenges each time the quest is played
                 List<Challenge> questChallenges = new List<Challenge>(){};
                 while (questChallenges.Count < 5)

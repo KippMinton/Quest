@@ -18,10 +18,13 @@ namespace Quest
         public Robe ColorfulRobe { get; }
 
         public Hat Hat { get; }
+
+        public int Xp { get; set; }
         // A constructor to make a new Adventurer object with a given name
         public Adventurer(string name, Robe robe, Hat hat)
         {
             Name = name;
+            Xp = 0;
             Awesomeness = 50;
             ColorfulRobe = robe;
             Hat = hat;
