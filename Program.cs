@@ -47,13 +47,15 @@ namespace Quest
             AdventurerRobe.Length = 60;
             AdventurerRobe.Colors.Add("red, white and blue");
 
-            Hat oldDirtyHat = new Hat();
-            oldDirtyHat.ShininessLevel = 1;
+            Hat OldDirtyHat = new Hat();
+            OldDirtyHat.ShininessLevel = 1;
+
+            Prize goldCoin = new Prize("You earned a gold coin!");
 
 
             Console.WriteLine("What is your name, adventurer?");
             // Make a new "Adventurer" object using the "Adventurer" class
-            Adventurer theAdventurer = new Adventurer(Console.ReadLine(), AdventurerRobe, oldDirtyHat);
+            Adventurer theAdventurer = new Adventurer(Console.ReadLine(), AdventurerRobe, OldDirtyHat);
 
             Console.WriteLine(theAdventurer.GetDescription());
 
@@ -91,6 +93,8 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
+
+                goldCoin.ShowPrize(theAdventurer);
 
                 Console.WriteLine("Would you like to attempt this quest once more?");
 
